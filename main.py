@@ -1,27 +1,50 @@
 import pygame
+import numpy as np
 
 pygame.init()
 
-WIDTH = 500
-HEIGHT = 400
+WIDTH = 800
+HEIGHT = 600
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 pygame.display.set_caption("Bubble sort")
 
-# initial position
-initial_x = 40
-initial_y = 40
+padding_x = 2
+padding_y = 5
 
-bar_width = 20
+#bar_height = [200, 50, 130, 90, 250, 61, 110, 88, 33, 80, 70, 159, 180, 20]
+bar_height = np.random.randint(1, HEIGHT-padding_y+1, size=30)
 
-bar_height = [200, 50, 130, 90, 250, 61, 110, 88, 33, 80, 70, 159, 180, 20]
+bar_width = (WIDTH - padding_x) / len(bar_height) - padding_x
 
 run = True
 
 def show(bar_height):
     for i in range(len(bar_height)):
-        pygame.draw.rect(surface=window, color=(255, 255, 255), rect=(initial_x + 30 * i, initial_y, bar_width, bar_height[i]))
+        pygame.draw.rect(
+            surface=window, 
+            color=(255, 255, 255), 
+            rect=(
+                padding_x + (bar_width + padding_x) * i, 
+                HEIGHT - bar_height[i] - padding_y, 
+                bar_width, 
+                bar_height[i]
+            ),
+        )
+
+def bubble_sort(values):
+    for i in range(len(values) - 1):
+        for j in range(len(values) - i - 1):
+            if values[j] > values[j + 1]:
+                t = values[j]
+                values[j] = values[j + 1]
+                values[j + 1] = t
+
+            window.fill((0, 0, 0))
+            show(values)
+            pygame.time.delay(50)
+            pygame.display.update()
 
 while run:
     execute = False
@@ -31,10 +54,9 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-
-    # start sorting after pressing spacebar
-    if keys[pygame.K_SPACE]:
-        execute = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                execute = True
 
     if not execute:
         window.fill((0, 0, 0))
@@ -42,18 +64,6 @@ while run:
         pygame.display.update()
     else:
         # start sorting using bubble sort technique
-        for i in range(len(bar_height) - 1):
-            for j in range(len(bar_height) - i - 1):
-                if bar_height[j] > bar_height[j + 1]:
-                    t = bar_height[j]
-                    bar_height[j] = bar_height[j + 1]
-                    bar_height[j + 1] = t
-
-                window.fill((0, 0, 0))
-                show(bar_height)
-                pygame.time.delay(50)
-                pygame.display.update()
-
-        execute = False
+        bubble_sort(values=bar_height)
 
 pygame.quit()
