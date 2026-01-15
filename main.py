@@ -8,7 +8,7 @@ HEIGHT = 600
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
-pygame.display.set_caption("Bubble sort")
+pygame.display.set_caption("Sorting Visualizer")
 
 padding_x = 2
 padding_y = 5
@@ -33,6 +33,12 @@ def show(bar_height):
             ),
         )
 
+def display(values):
+    window.fill((0, 0, 0))
+    show(values)
+    pygame.time.delay(50)
+    pygame.display.update()    
+
 def bubble_sort(values):
     for i in range(len(values) - 1):
         for j in range(len(values) - i - 1):
@@ -40,11 +46,16 @@ def bubble_sort(values):
                 t = values[j]
                 values[j] = values[j + 1]
                 values[j + 1] = t
+            display(values)
 
-            window.fill((0, 0, 0))
-            show(values)
-            pygame.time.delay(50)
-            pygame.display.update()
+def selection_sort(values):
+    for i in range(len(values) - 1):
+        min_idx = i
+        for j in range(i + 1, len(values)):
+            if values[j] < values[min_idx]:
+                min_idx = j
+        values[i], values[min_idx] = values[min_idx], values[i]
+        display(values)
 
 while run:
     execute = False
@@ -64,6 +75,7 @@ while run:
         pygame.display.update()
     else:
         # start sorting using bubble sort technique
-        bubble_sort(values=bar_height)
+        #bubble_sort(values=bar_height)
+        selection_sort(values=bar_height)
 
 pygame.quit()
