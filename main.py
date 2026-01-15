@@ -20,11 +20,11 @@ bar_width = (WIDTH - padding_x) / len(bar_height) - padding_x
 
 run = True
 
-def show(bar_height):
+def show(bar_height, colors=(255,255,255)):
     for i in range(len(bar_height)):
         pygame.draw.rect(
             surface=window, 
-            color=(255, 255, 255), 
+            color=colors, 
             rect=(
                 padding_x + (bar_width + padding_x) * i, 
                 HEIGHT - bar_height[i] - padding_y, 
@@ -57,6 +57,8 @@ def selection_sort(values):
         values[i], values[min_idx] = values[min_idx], values[i]
         display(values)
 
+sorted_flag = False
+
 while run:
     execute = False
     pygame.time.delay(10)
@@ -71,11 +73,14 @@ while run:
 
     if not execute:
         window.fill((0, 0, 0))
-        show(bar_height)
+        if sorted_flag:
+            show(bar_height, colors=(0,255,0))
+        else:
+            show(bar_height)
         pygame.display.update()
     else:
-        # start sorting using bubble sort technique
         #bubble_sort(values=bar_height)
         selection_sort(values=bar_height)
+        sorted_flag = True
 
 pygame.quit()
