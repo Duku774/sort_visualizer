@@ -1,4 +1,4 @@
-from main import display
+from visualizer import *
 
 def bubble_sort(values):
     for i in range(len(values) - 1):
