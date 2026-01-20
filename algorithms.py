@@ -17,3 +17,13 @@ def selection_sort(values):
                 min_idx = j
         values[i], values[min_idx] = values[min_idx], values[i]
         display(values)
+
+def insertion_sort(values):
+    for i in range(1, len(values)):
+        key = values[i]
+        j = i - 1
+        while j >= 0 and key < values[j]:
+            values[j + 1] = values[j]
+            j -= 1
+        values[j + 1] = key
+        display(values)

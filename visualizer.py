@@ -7,8 +7,7 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 padding_x = 2
 padding_y = 5
 
-#bar_height = [200, 50, 130, 90, 250, 61, 110, 88, 33, 80, 70, 159, 180, 20]
-bar_height = np.random.randint(1, HEIGHT-padding_y+1, size=30)
+bar_height = np.random.randint(1, HEIGHT-padding_y+1, size=100)
 bar_width = (WIDTH - padding_x) / len(bar_height) - padding_x
 
 def show(bar_height, colors=(255,255,255)):

@@ -17,7 +17,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN and not sorted_flag:
             if event.key == pygame.K_SPACE:
                 execute = True
 
@@ -30,7 +30,8 @@ while run:
         pygame.display.update()
     else:
         #bubble_sort(values=bar_height)
-        selection_sort(values=bar_height)
+        #selection_sort(values=bar_height)
+        insertion_sort(values=bar_height)
         sorted_flag = True
 
 pygame.quit()
