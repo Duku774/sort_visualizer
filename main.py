@@ -31,7 +31,8 @@ while run:
     else:
         #bubble_sort(values=bar_height)
         #selection_sort(values=bar_height)
-        insertion_sort(values=bar_height)
+        #insertion_sort(values=bar_height)
+        quick_sort(values=bar_height, low=0, high=len(bar_height)-1)
         sorted_flag = True
 
 pygame.quit()

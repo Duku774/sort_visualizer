@@ -27,3 +27,21 @@ def insertion_sort(values):
             j -= 1
         values[j + 1] = key
         display(values)
+
+def quick_sort(values, low, high):
+    def partition(values, low, high):
+        pivot = values[high]
+        i = low - 1
+        for j in range(low, high):
+            if values[j] < pivot:
+                i += 1
+                values[i], values[j] = values[j], values[i]
+                display(values)
+        values[i + 1], values[high] = values[high], values[i + 1]
+        display(values)
+        return i + 1
+    
+    if low < high:
+        partition_index = partition(values, low, high)
+        quick_sort(values, low, partition_index - 1)
+        quick_sort(values, partition_index + 1, high)
