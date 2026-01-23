@@ -45,3 +45,27 @@ def quick_sort(values, low, high):
         partition_index = partition(values, low, high)
         quick_sort(values, low, partition_index - 1)
         quick_sort(values, partition_index + 1, high)
+
+def cocktail_sort(values):
+    swapped = True
+    start = 0
+    end = len(values)-1
+
+    while swapped:
+        swapped = False
+        for i in range(start, end):
+            if values[i] > values[i + 1]:
+                values[i], values[i + 1] = values[i + 1], values[i]
+                display(values)
+                swapped = True   
+        if not swapped:
+            break
+        
+        swapped = False
+        end = end - 1
+        for i in range(end-1, start-1, -1):
+            if values[i] > values[i + 1]:
+                values[i], values[i + 1] = values[i + 1], values[i]
+                display(values)
+                swapped = True
+        start = start + 1
