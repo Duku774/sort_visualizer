@@ -69,3 +69,27 @@ def cocktail_sort(values):
                 display(values)
                 swapped = True
         start = start + 1
+
+def heap_sort(values):
+    def heapify(array, array_len, root):
+        largest = root
+        left_index = 2 * root + 1
+        right_index = 2 * root + 2
+
+        if left_index < array_len and array[left_index] > array[largest]:
+            largest = left_index
+        if right_index < array_len and array[right_index] > array[largest]:
+            largest = right_index
+
+        if largest != root:
+            array[root], array[largest] = array[largest], array[root]
+            display(array)
+            heapify(array, array_len, largest)
+
+    for i in range(len(values) // 2 - 1, -1, -1):
+        heapify(values, len(values), i)
+    
+    for i in range(len(values) - 1, 0, -1):
+        values[0], values[i] = values[i], values[0]
+        display(values)
+        heapify(values, i, 0)
