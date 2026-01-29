@@ -93,3 +93,31 @@ def heap_sort(values):
         values[0], values[i] = values[i], values[0]
         display(values)
         heapify(values, i, 0)
+
+def radix_sort(values):
+    def digit_sort(array, exp):
+        output = [0] * len(array)
+        count = [0] * 10
+
+        for i in range (0, len(array)):
+            index = array[i] // exp
+            count[int(index % 10)] += 1
+        for i in range(1, 10):
+            count[i] += count [i - 1]
+
+        i = len(array) - 1
+        while i >= 0:
+            index = array[i] // exp
+            output[count[int(index % 10)] - 1] = array[i]
+            count[int(index % 10)] -= 1
+            i -= 1
+
+        i = 0
+        for i in range (0, len(array)):
+            array[i] = output[i]
+            display(array)
+
+    exponential = 1
+    while max(values) // exponential >= 1:
+        digit_sort(values, exponential)
+        exponential *= 10
