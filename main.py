@@ -35,7 +35,8 @@ while run:
         #quick_sort(values=bar_height, low=0, high=len(bar_height)-1)
         #cocktail_sort(values=bar_height)
         #heap_sort(values=bar_height)
-        radix_sort(values=bar_height)
+        #radix_sort(values=bar_height)
+        comb_sort(values=bar_height)
         sorted_flag = True
 
 pygame.quit()

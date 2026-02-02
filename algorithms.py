@@ -121,3 +121,21 @@ def radix_sort(values):
     while max(values) // exponential >= 1:
         digit_sort(values, exponential)
         exponential *= 10
+
+def comb_sort(values):
+    def get_next_gap(gap):
+        gap = (gap * 10) // 13
+        if gap < 1:
+            return 1
+        return gap
+    
+    gap = len(values)
+    swapped = True
+    while gap != 1 or swapped:
+        gap = get_next_gap(gap)
+        swapped = False
+        for i in range(0, len(values) - gap):
+            if values[i] > values[i + gap]:
+                values[i], values[i + gap] = values[i + gap], values[i]
+                display(values)
+                swapped = True
