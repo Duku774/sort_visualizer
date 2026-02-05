@@ -1,4 +1,5 @@
 from visualizer import *
+import random
 
 def bubble_sort(values):
     for i in range(len(values) - 1):
@@ -152,3 +153,19 @@ def shell_sort(values):
                 display(values)
             values[j] = temp
         gap //= 2
+
+def bogo_sort(values):
+    def is_sorted(array):
+        for i in range(0, len(array)-1):
+            if array[i] > array[i + 1]:
+                return False
+        return True
+    
+    def shuffle(array):
+        for i in range(0, len(array)):
+            r = random.randint(0, len(array)-1)
+            array[i], array[r] = array[r], array[i]
+    
+    while not is_sorted(values):
+        shuffle(values)
+        display(values)

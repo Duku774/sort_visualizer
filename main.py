@@ -38,6 +38,7 @@ while run:
         #radix_sort(values=bar_height)
         #comb_sort(values=bar_height)
         shell_sort(values=bar_height)
+        #bogo_sort(values=bar_height)
         sorted_flag = True
 
 pygame.quit()
