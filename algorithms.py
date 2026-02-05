@@ -139,3 +139,16 @@ def comb_sort(values):
                 values[i], values[i + gap] = values[i + gap], values[i]
                 display(values)
                 swapped = True
+
+def shell_sort(values):
+    gap = len(values) // 2
+    while gap > 0:
+        for i in range(gap, len(values)):
+            temp = values[i]
+            j = i
+            while j >= gap and values[j - gap] > temp:
+                values[j] = values[j - gap]
+                j -= gap
+                display(values)
+            values[j] = temp
+        gap //= 2
